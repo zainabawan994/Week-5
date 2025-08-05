@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON & LocalStorage Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Save User Info with JSON & LocalStorage</h2>
+
+  <!-- Input Fields -->
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <input type="number" id="ageInput" placeholder="Enter your age">
+  <br>
+  <button onclick="saveData()">Save</button>
+  <button onclick="loadData()">Load</button>
+  <button onclick="clearData()">Clear</button>
+
+  <!-- Display Output -->
+  <div class="output" id="outputArea"></div>
+
+  <script>
+    // Save data to localStorage
+    function saveData() {
+      const name = document.getElementById("nameInput").value;
+      const age = document.getElementById("ageInput").value;
+
+      const userData = {
+        name: name,
+        age: age
+      };
+
+      // Convert object to JSON string
+      localStorage.setItem("userInfo", JSON.stringify(userData));
+      alert("Data saved successfully!");
+    }
+
+    // Load and display data from localStorage
+    function loadData() {
+      const data = localStorage.getItem("userInfo");
+
+      if (data) {
+        const user = JSON.parse(data); // Convert back to object
+        document.getElementById("outputArea").innerText = 
+          `Hello ${user.name}, you are ${user.age} years old.`;
+      } else {
+        document.getElementById("outputArea").innerText = "No data found.";
+      }
+    }
+
+    // Clear data from localStorage
+    function clearData() {
+      localStorage.removeItem("userInfo");
+      document.getElementById("outputArea").innerText = "Data has been cleared.";
+    }
+  </script>
+
+</body>
+</html>
