@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Events Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 40px;
+      text-align: center;
+    }
+    button, select, input {
+      padding: 10px 20px;
+      margin: 15px;
+      font-size: 16px;
+    }
+    input {
+      width: 200px;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>JavaScript Events Demo</h2>
+
+  <!-- onclick event -->
+  <button onclick="showMessage()">Click Me (onclick)</button>
+
+  <!-- onchange event -->
+  <br>
+  <label for="fruitSelect">Choose a fruit:</label>
+  <select id="fruitSelect" onchange="showSelectedFruit()">
+    <option value="">--Select--</option>
+    <option value="Apple">Apple</option>
+    <option value="Banana">Banana</option>
+    <option value="Mango">Mango</option>
+  </select>
+
+  <!-- addEventListener -->
+  <br>
+  <label for="nameInput">Type your name:</label>
+  <input type="text" id="nameInput" placeholder="Your Name">
+
+  <!-- Output area -->
+  <div class="output" id="outputArea"></div>
+
+  <script>
+    // onclick function
+    function showMessage() {
+      document.getElementById("outputArea").innerText = "Button was clicked!";
+    }
+
+    // onchange function
+    function showSelectedFruit() {
+      const fruit = document.getElementById("fruitSelect").value;
+      document.getElementById("outputArea").innerText = "You selected: " + fruit;
+    }
+
+    // addEventListener for input field
+    const nameInput = document.getElementById("nameInput");
+    nameInput.addEventListener("change", function () {
+      const name = nameInput.value;
+      document.getElementById("outputArea").innerText = "Hello, " + name + "!";
+    });
+  </script>
+
+</body>
+</html>
